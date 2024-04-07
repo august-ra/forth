@@ -24,6 +24,51 @@ def test_product_init():
     assert product.quantity == 10
 
 
+def test_price_reading():
+    product = Product(name='test', description='test', price=100, quantity=10)
+    assert product.price == 100
+
+
+def test_price_writing_less_zero():
+    product = Product(name='test', description='test', price=100, quantity=10)
+    product.price = -10
+    assert product.price == 100
+
+
+def test_less_price_writing():
+    product = Product(name='test', description='test', price=100, quantity=10)
+    product.set_price(80, StringIO("n"))
+    assert product.price == 100
+    product.set_price(80, StringIO("y"))
+    assert product.price == 80
+
+
+def test_bigger_price_writing():
+    product = Product(name='test', description='test', price=100, quantity=10)
+    product.price = 120
+    assert product.price == 120
+
+
+def test_adding_same_products_to_category(product_in_category_before, product_in_category_after):
+    category = Category(name='test', description='test', products=[])
+    category.add_product(name='test', description='test', price=100, quantity=10)
+    assert category.count_products == 1
+    assert category.products == product_in_category_before
+    category.add_product(name='test', description='test', price=120, quantity=5)
+    assert category.count_products == 1
+    assert category.products == product_in_category_after
+
+
+def test_adding_different_products_to_category(product_in_category_before, products_in_category_after):
+    category = Category(name='test', description='test', products=[])
+    category.add_product(name='test', description='test', price=100, quantity=10)
+    assert category.count_products == 1
+    assert category.products == product_in_category_before
+    category.add_product(name='test2', description='test2', price=120, quantity=5)
+    assert category.count_products == 2
+    assert category.products == products_in_category_after
+
+
 def test_count_categories():
     category_1 = Category(name='test', description='test', products=[])
     category_2 = Category(name='test', description='test', products=[])

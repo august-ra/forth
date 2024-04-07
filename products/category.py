@@ -22,7 +22,6 @@ class Category:
                 return None
 
         product = Product(name, description, price, quantity)
-        self.__products.append(product)
 
         return product
 
@@ -37,4 +36,6 @@ class Category:
 
     @property
     def products(self):
-        return [f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт." for product in self.__products]
+        return "\n".join(
+            [f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт." for product in self.__products]
+        )
