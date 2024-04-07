@@ -5,11 +5,15 @@ from products.product import Product
 
 class Categories:
 
-    count_categories = 0
-    count_products = 0
-
     def __init__(self, data):
         self.data = data
+
+        self.count_categories = 0
+        self.count_products = 0
+
+        for category in data:
+            self.count_categories += 1
+            self.count_products += category.count_products
 
     @classmethod
     def load_from_file(cls, file):
@@ -22,20 +26,12 @@ class Categories:
         categories = []
 
         for category in data:
-            Categories.count_categories += 1  # total
-
             products = []
 
             for product in category['products']:
-                Categories.count_products += 1  # total
-
                 products.append(Product(product['name'], product['description'], product['price'], product['quantity']))
 
             categories.append(Category(category['name'], category['description'], products))
-
-        # total
-        Category.count_categories = Categories.count_categories
-        Category.count_products = Categories.count_products
 
         return cls(categories)
 
