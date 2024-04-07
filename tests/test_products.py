@@ -40,10 +40,6 @@ def test_count_products():
     assert category.count_products == 2
 
 
-def test_empty_json():
+def test_empty_json(empty_categories):
     categories = Categories.load_from_file(EMPTY_PATH)
-    assert categories.to_json() == """{
-    "count_categories": 0,
-    "count_products": 0,
-    "data": []
-}"""
+    assert categories.to_json() == empty_categories
