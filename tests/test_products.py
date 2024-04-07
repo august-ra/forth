@@ -1,3 +1,5 @@
+from io import StringIO
+
 from settings import DATA_PATH, EMPTY_PATH
 from products.categories import Categories
 from products.category import Category
