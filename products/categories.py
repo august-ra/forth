@@ -21,7 +21,7 @@ class Categories:
             data = json.load(f)
 
         if not data:
-            return None
+            return cls([])
 
         categories = []
 
