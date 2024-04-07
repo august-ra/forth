@@ -18,7 +18,8 @@ class Product:
 
             return
         elif value < self.__price:
-            user_input = input("Устанавливаемая цена ниже текущей, подтвердите действие (y/n или д/н): ").strip().lower()
+            waits = "(y/n или д/н)"
+            user_input = input(f"Устанавливаемая цена ниже текущей, подтвердите действие {waits}: ").strip().lower()
 
             if user_input != 'y' and user_input != 'д':
                 return
