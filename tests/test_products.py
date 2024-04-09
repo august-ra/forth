@@ -28,6 +28,18 @@ def test_product_init():
     assert product.quantity == 10
 
 
+def test_printing_product():
+    product = Product(name='test', description='test', price=100, quantity=10)
+    assert str(product) == 'test, 100 руб. Остаток: 10 шт.'
+
+
+def test_adding_products():
+    product_1 = Product(name='test', description='test', price=100, quantity=10)
+    product_2 = Product(name='test', description='test', price=200, quantity=2)
+    result = product_1 + product_2
+    assert result == 1400
+
+
 def test_price_reading():
     product = Product(name='test', description='test', price=100, quantity=10)
     assert product.price == 100
@@ -88,6 +100,14 @@ def test_count_products():
     products = [product_1, product_2]
     category = Category(name='test', description='test', products=products)
     assert category.count_products == 2
+
+
+def test_len_products():
+    product_1 = Product(name='test', description='test', price=100, quantity=10)
+    product_2 = Product(name='test', description='test', price=100, quantity=10)
+    products = [product_1, product_2]
+    category = Category(name='test', description='test', products=products)
+    assert len(category) == 20
 
 
 def test_empty_json(empty_categories):
