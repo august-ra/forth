@@ -9,7 +9,7 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
-    def set_price(self, value, _in=stdin):
+    def set_price(self, value: float, _in=stdin):
         if value <= 0:
             print("Цена некорректная, отмена действия")
 
@@ -29,5 +29,5 @@ class Product:
         return self.__price
 
     @price.setter
-    def price(self, value):
+    def price(self, value: float):
         self.set_price(value, stdin)
