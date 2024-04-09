@@ -9,6 +9,12 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
+    def __str__(self) -> str:
+        return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
+
+    def __add__(self, other) -> float:
+        return self.__price * self.quantity + other.__price * other.quantity
+
     def set_price(self, value: float, _in=stdin):
         if value <= 0:
             print("Цена некорректная, отмена действия")

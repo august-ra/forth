@@ -13,6 +13,14 @@ class Category:
         for _ in products:
             self.count_products += 1
 
+    def __len__(self):
+        result = 0
+
+        for product in self.__products:
+            result += product.quantity
+
+        return result
+
     def __add_product(self, name, description, price, quantity):
         for product in self.__products:
             if product.name == name:
@@ -36,6 +44,4 @@ class Category:
 
     @property
     def products(self):
-        return "\n".join(
-            [f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт." for product in self.__products]
-        )
+        return "\n".join([f"{product}" for product in self.__products])
