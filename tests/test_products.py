@@ -102,7 +102,15 @@ def test_count_products():
     assert category.count_products == 2
 
 
-def test_len_products():
+def test_str_category():
+    product_1 = Product(name='test', description='test', price=100, quantity=10)
+    product_2 = Product(name='test', description='test', price=100, quantity=10)
+    products = [product_1, product_2]
+    category = Category(name='test', description='test', products=products)
+    assert str(category) == 'test, количество продуктов: 20'
+
+
+def test_len_category():
     product_1 = Product(name='test', description='test', price=100, quantity=10)
     product_2 = Product(name='test', description='test', price=100, quantity=10)
     products = [product_1, product_2]

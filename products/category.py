@@ -13,6 +13,9 @@ class Category:
         for _ in products:
             self.count_products += 1
 
+    def __str__(self):
+        return f"{self.name}, количество продуктов: {len(self)}"
+
     def __len__(self):
         result = 0
 
