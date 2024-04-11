@@ -10,17 +10,6 @@ class Categories:
     count_categories = 0
     count_products = 0
 
-    def __init__(self, data):
-        self.data = data
-
-        self.count_categories = 0
-        self.count_products = 0
-
-        for category in data:
-            self.count_categories += 1
-            self.count_products += category.count_products
-
-
     @classmethod
     def count_inner(cls):
         cls.count_categories = 0
@@ -57,5 +46,7 @@ class Categories:
 
         return True
 
-    def to_json(self):
-        return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)
+    @classmethod
+    def to_json(cls) -> str:
+        tmp = cls()
+        return json.dumps(tmp, default=lambda o: o.__dict__, sort_keys=True, indent=4)

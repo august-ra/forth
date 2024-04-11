@@ -7,15 +7,17 @@ from products.product import Product
 
 
 def test_get_empty():
-    categories = Categories.load_from_file(EMPTY_PATH)
-    assert isinstance(categories.data, list)
-    assert len(categories.data) == 0
+    result = Categories.load_from_file(EMPTY_PATH)
+    assert not result
+    assert isinstance(Categories.data, list)
+    assert len(Categories.data) == 0
 
 
 def test_get_data():
-    categories = Categories.load_from_file(DATA_PATH)
-    assert isinstance(categories.data, list)
-    assert len(categories.data) > 0
+    result = Categories.load_from_file(DATA_PATH)
+    assert result
+    assert isinstance(Categories.data, list)
+    assert len(Categories.data) > 0
 
 
 def test_product_init():
@@ -75,8 +77,9 @@ def test_count_categories():
     category_1 = Category(name='test', description='test', products=[])
     category_2 = Category(name='test', description='test', products=[])
     categories = [category_1, category_2]
-    categories = Categories(categories)
-    assert categories.count_categories == 2
+    Categories.load_from_data(categories)
+    assert Categories.count_categories == 2
+    assert Categories.count_products == 0
 
 
 def test_count_products():
@@ -87,6 +90,7 @@ def test_count_products():
     assert category.count_products == 2
 
 
-def test_empty_json(empty_categories):
-    categories = Categories.load_from_file(EMPTY_PATH)
-    assert categories.to_json() == empty_categories
+def test_empty_json():
+    result = Categories.load_from_file(EMPTY_PATH)
+    assert not result
+    assert Categories.to_json() == "{}"

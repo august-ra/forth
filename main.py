@@ -3,8 +3,12 @@ from products.categories import Categories
 
 
 def main():
-    categories = Categories.load_from_file(DATA_PATH)
-    print(categories.to_json())
+    result = Categories.load_from_file(DATA_PATH)
+
+    if not result:
+        exit(5)
+
+    print(Categories.to_json())
 
 
 if __name__ == '__main__':
