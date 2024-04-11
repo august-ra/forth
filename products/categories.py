@@ -6,6 +6,10 @@ from products.product import Product
 
 class Categories:
 
+    data = []
+    count_categories = 0
+    count_products = 0
+
     def __init__(self, data):
         self.data = data
 
