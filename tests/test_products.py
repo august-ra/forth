@@ -6,16 +6,16 @@ from products.category import Category
 from products.product import Product
 
 
-def test_get_data():
-    categories = Categories.load_from_file(DATA_PATH)
-    assert isinstance(categories.data, list)
-    assert len(categories.data) > 0
-
-
 def test_get_empty():
     categories = Categories.load_from_file(EMPTY_PATH)
     assert isinstance(categories.data, list)
     assert len(categories.data) == 0
+
+
+def test_get_data():
+    categories = Categories.load_from_file(DATA_PATH)
+    assert isinstance(categories.data, list)
+    assert len(categories.data) > 0
 
 
 def test_product_init():
